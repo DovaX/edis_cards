@@ -19,6 +19,17 @@ import pygame
 import operator
 
 
+
+
+
+class Card:
+    def __init__(self,mana_cost,attack,hp,abilities,image=None):
+        self.mana_cost=mana_cost
+        self.attack = attack
+        self.hp = hp
+        self.abilities = abilities
+        self.image = image
+
 class Game:
     def __init__(self):
         self.player_on_turn=1
@@ -38,10 +49,10 @@ initialize_game()
 c=game_engine.Col()  
 
 def initialize_grids(grids):
-    grids.append(game_engine.Grid(8,8,position=[POSITION_X,POSITION_Y],cell_size=[CELL_SIZE_X,CELL_SIZE_Y],colors=[c.white,c.green]))
+    grids.append(game_engine.Grid(8,8,position=[POSITION_X,POSITION_Y],cell_size=[CELL_SIZE_X,CELL_SIZE_Y],colors=[c.white,c.black]))
     grid=grids[0]
-    #for i in range(len(grid.grid)):
-        #for j in range(len(grid.grid[i])):
-            #if((i+j)%2==1):
-            #    grid.grid[i][j]=1
+    for i in range(len(grid.grid)):
+        for j in range(len(grid.grid[i])):
+            if((7-i)*i>9):
+                grid.grid[i][j]=1
     return(grids)
